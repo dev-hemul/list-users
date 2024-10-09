@@ -1,0 +1,22 @@
+{
+  "name": "list-users",
+  "version": "1.0.0",
+  "main": "http/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon bin/www.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "http-errors": "^2.0.0",
+    "mongoose": "^8.7.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.7"
+  }
+}
