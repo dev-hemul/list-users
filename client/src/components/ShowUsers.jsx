@@ -11,8 +11,7 @@ const ShowUsers = () => {
 		setError(null); // Сбрасываем состояние ошибки
 		
 		try {
-			const apiBaseUrl = process.env.NODE_ENV === 'production' ? process.env.API_URL // Укажите ваш production URL
-				: 'http://localhost:4000';
+			const apiBaseUrl = 'http://localhost:4000';
 			const response = await axios.get(`${apiBaseUrl}/users`);
 			console.log('Fetched users:', response.data); // Логируем полученные данные
 			
