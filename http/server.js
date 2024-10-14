@@ -17,13 +17,17 @@ import cors from 'cors';
 const app = express();
 app.use(morgan('combined'));
 
+app.use(cors());
+app.use(express.json());
+
 //  import.meta.url это специальная переменная в ESM, которая содержит URL текущего модуля (файла).
 // fileURLToPath(import.meta.url) - конвертирует этот URL в путь файловой системы.
 // В результате, __filename будет содержать полный путь к текущему файлу (где находится этот код). Это аналог старой переменной __filename в CommonJS.
 const __filename = fileURLToPath(import.meta.url);
 
-app.use(express.json());
-app.use(cors());
+// path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, '../client/')));
 
 app.get('/', (req, res) => {
 	
@@ -48,10 +52,6 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
-// path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
-const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, '../client/')));
-
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/', 'index.html'));
 });
@@ -66,8 +66,7 @@ app.use((err, req, res, next) => {
 	console.error(status);
 	console.error(message);
 	
-	res
-		.status(status) // Встановлюємо статус відповіді
+	res.status(status).json({ error: message }); // Возврат сообщения об ошибке в формате JSON
 });
 
 export default app;
