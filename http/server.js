@@ -23,7 +23,10 @@ app.use(morgan('combined'));
 const __filename = fileURLToPath(import.meta.url);
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+   origin: 'http://157.230.115.142', // Явно укажите URL фронтенда
+   methods: ['GET', 'POST'], // Разрешите методы GET и POST
+}));
 
 // path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
 const __dirname = path.dirname(__filename);
