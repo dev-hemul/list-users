@@ -18,7 +18,7 @@ const CreateUser = () => {
 		e.preventDefault(); // Предотвращаем перезагрузку страницы
 		
 		try {
-			const response = await axios.post('http://localhost:4000/createUser', formData);
+			const response = await axios.post('http://157.230.115.142/createUser', formData);
 			console.log('Form submitted successfully:', response.data);
 			setFormData({
 				name: "", // Очищаем поле name
