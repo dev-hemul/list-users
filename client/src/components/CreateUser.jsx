@@ -17,7 +17,7 @@ const CreateUser = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault(); // Предотвращаем перезагрузку страницы
 		
-		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000';
 		
 		try {
 			const response = await axios.post(`${apiUrl}/createUser`, formData);

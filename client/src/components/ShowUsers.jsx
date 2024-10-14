@@ -10,7 +10,7 @@ const ShowUsers = () => {
 		setLoading(true); // Устанавливаем состояние загрузки
 		setError(null); // Сбрасываем состояние ошибки
 		
-		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000';
 		
 		try {
 			const response = await axios.get(`${apiUrl}/users`);

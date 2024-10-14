@@ -8,10 +8,9 @@ import morgan from 'morgan';
 import createHttpError from 'http-errors';
 // Раскрашивание консоли
 import colors from 'colors';
-// Импорт контроллера
-import * as usersController from '../controller/users.js';
 // Импорт CORS
 import cors from 'cors';
+import UsersRoute from './routes/users.js';
 
 
 const app = express();
@@ -31,28 +30,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-app.get('/', (req, res) => {
-	
-	res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-})
-
-app.post('/api/createUser', async (req, res) => {
-	const {name} = req.body;
-	console.log(name)
-	await usersController.createUser(name);
-	 res.status(200).json({ message: 'User created successfully', name });
-})
-
-app.get('/api/users', async (req, res) => {
-  try {
-    const users = await usersController.showUser(); // Получаем пользователей
-    console.log('Response data before sending:', users); // Логируем ответ перед отправкой
-    res.status(200).json(users); // Отправляем пользователей клиенту
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ message: 'Error fetching users' });
-  }
-});
+app.use('/api', UsersRoute);
 
 app.use((req, res, next) => {
 	next(createHttpError(404));
