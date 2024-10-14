@@ -27,7 +27,7 @@ const __filename = fileURLToPath(import.meta.url);
 
 // path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, '../client/')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.get('/', (req, res) => {
 	
