@@ -33,14 +33,14 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 })
 
-app.post('/createUser', async (req, res) => {
+app.post('/api/createUser', async (req, res) => {
 	const {name} = req.body;
 	console.log(name)
 	await usersController.createUser(name);
 	 res.status(200).json({ message: 'User created successfully', name });
 })
 
-app.get('/users', async (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
     const users = await usersController.showUser(); // Получаем пользователей
     console.log('Response data before sending:', users); // Логируем ответ перед отправкой

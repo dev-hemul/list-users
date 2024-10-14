@@ -11,8 +11,7 @@ const ShowUsers = () => {
 		setError(null); // Сбрасываем состояние ошибки
 		
 		try {
-			const apiBaseUrl = 'http://157.230.115.142';
-			const response = await axios.get(`${apiBaseUrl}/users`);
+			const response = await axios.get('http://157.230.115.142/api/users');
 			console.log('Fetched users:', response.data); // Логируем полученные данные
 			
 			if (Array.isArray(response.data)) {
