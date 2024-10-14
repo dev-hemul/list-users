@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 
 app.get('/', (req, res) => {
 	
-	res.sendFile(path.join(__dirname, '../client/public', 'index.html'));
+	res.sendFile(path.join(__dirname, '../client/build/static', 'index.html'));
 })
 
 app.post('/createUser', async (req, res) => {
