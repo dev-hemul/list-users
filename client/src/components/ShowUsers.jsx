@@ -32,16 +32,16 @@ const ShowUsers = () => {
 	
 	return (
 		<div className="flex flex-col justify-center items-center p-4 bg-zinc-50">
-			<button className="text-xl border-2 border-red-500 p-2 mb-9"
+			<button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg mb-5 transition-opacity duration-2000 transform opacity-0 animate-fade-in"
 			        onClick={fetchData}>Показати всіх покупців
 			</button>
 			{loading && <p>Загрузка...</p>} {/* Сообщение о загрузке */}
 			{error && <p>{error}</p>} {/* Сообщение об ошибке */}
 			
-			<ul className=" flex flex-col flex-wrap justify-center">
+			<ul className="flex flex-col flex-wrap justify-center">
 				{data.map((user) => (
 					<li className="mb-2" key={user._id}>
-						<p className="border border-amber-200 sm:w-full p-7">{user.name}</p>
+						<p className="border border-amber-200 sm:w-full p-7 transition-opacity duration-2000 transform opacity-0 animate-fade-in">{user.name}</p>
 					</li> // Отображаем имя пользователя
 				))}
 			</ul>
