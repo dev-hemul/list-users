@@ -28,10 +28,6 @@ app.use(cors({
    methods: ['GET', 'POST'], // Разрешите методы GET и POST
 }));
 
-// path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
-const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, 'views')));
-
 app.get('/', (req, res) => {
 	
 	res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
@@ -54,6 +50,10 @@ app.get('/users', async (req, res) => {
     res.status(500).json({ message: 'Error fetching users' });
   }
 });
+
+// path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, 'views')));
 
 app.use((req, res, next) => {
 	next(createHttpError(404));
