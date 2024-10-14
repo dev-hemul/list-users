@@ -4,8 +4,6 @@ const schema = new Schema({
 	name: {
 		type: SchemaTypes.String,
 		default: '',
-		minlength: 3,
-		maxLength: 30,
 	}
 }, {timestamps: true}); // Автоматом додасть поля createdAt, updatedAt (час створення і час оновлення запису)
 

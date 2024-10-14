@@ -10,8 +10,10 @@ const ShowUsers = () => {
 		setLoading(true); // Устанавливаем состояние загрузки
 		setError(null); // Сбрасываем состояние ошибки
 		
+		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+		
 		try {
-			const response = await axios.get('http://157.230.115.142/api/users');
+			const response = await axios.get(`${apiUrl}/users`);
 			console.log('Fetched users:', response.data); // Логируем полученные данные
 			
 			if (Array.isArray(response.data)) {

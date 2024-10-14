@@ -17,12 +17,11 @@ const CreateUser = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault(); // Предотвращаем перезагрузку страницы
 		
+		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+		
 		try {
-			const response = await axios.post('http://157.230.115.142/api/createUser', formData);
+			const response = await axios.post(`${apiUrl}/createUser`, formData);
 			console.log('Form submitted successfully:', response.data);
-			setFormData({
-				name: "", // Очищаем поле name
-			});
 			
 		} catch (error) {
 			console.error('Error submitting form:', error);
