@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, '../client/')));
 
 app.get('/', (req, res) => {
 	
-	res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+	res.sendFile(path.join(__dirname, '../client', 'index.html'));
 })
 
 app.post('/api/createUser', async (req, res) => {
@@ -50,10 +50,6 @@ app.get('/api/users', async (req, res) => {
     console.error('Error fetching users:', error);
     res.status(500).json({ message: 'Error fetching users' });
   }
-});
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/', 'index.html'));
 });
 
 app.use((req, res, next) => {
