@@ -18,6 +18,7 @@ const CreateUser = () => {
 		e.preventDefault(); // Предотвращаем перезагрузку страницы
 		
 		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+		console.log('API URL:', process.env.REACT_APP_API_URL);
 		
 		try {
 			const response = await axios.post(`${apiUrl}/createUser`, formData);
@@ -41,6 +42,7 @@ const CreateUser = () => {
 					value={formData.name}
 					onChange={handleChange}
 				/>
+				
 				<button className="
           border-2
           border-red-300
