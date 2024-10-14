@@ -48,6 +48,7 @@ const CreateUser = () => {
           bg-white p-4
           outline-0
           hover:bg-amber-200
+          w-full
           " type="submit">Відправити
 				</button>
 			
