@@ -53,7 +53,11 @@ app.get('/users', async (req, res) => {
 
 // path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 app.use((req, res, next) => {
 	next(createHttpError(404));
