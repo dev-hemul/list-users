@@ -42,7 +42,7 @@ app.use((err, req, res, next) => {
 	console.error(status);
 	console.error(message);
 	
-	res.status(status).json({ error: message }); // Возврат сообщения об ошибке в формате JSON
+	res.status(status).json({ error: message }); // Повертаємо пвоідомлення про помилку в форматі HSON
 });
 
 export default app;

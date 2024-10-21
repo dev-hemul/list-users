@@ -9,22 +9,35 @@ const createUser = async (userName) => {
 
 const showUser = async () => {
   try {
-    const users = await userModel.find(); // Получаем массив пользователей
-    console.log('Users from DB:', users); // Логируем пользователей для отладки
-    return users; // Возвращаем массив
+    const users = await userModel.find(); // Отримуємо масив користувачів
+    console.log('Users from DB:', users); // Логіруєм користувачів для отладки
+    return users; // Повертаємо масив
   } catch (error) {
-    console.error('Error fetching users:', error); // Логируем ошибку
-    return []; // Возвращаем пустой массив в случае ошибки
+    console.error('Error fetching users:', error); // Логируемо ошибку
+    return []; // Повертаємо пустий масив у разі помилки
   }
 };
 
-// Заготовки для будущих функций
-const updateUser = (userId) => {
-  // логика обновления пользователя
+const updateUser = async (userId, newName) => {
+  try {
+    const updatedUser = await userModel.findByIdAndUpdate(userId, { name: newName }, { new: true });
+    return updatedUser; // Повертаємо оновленого користувача
+  } catch (error) {
+    console.error('Помилка під час оновлення користувача:', error);
+    return null; // Повертаємо null у разі помилки
+  }
 };
 
-const deleteUser = (userId) => {
-  // логика удаления пользователя
+
+// Видяляємо користувача по ID
+const deleteUser = async (userId) => {
+  try {
+    return  await userModel.findByIdAndDelete(userId); // Використовуємо userModel
+     // Повертаємо, видаленого користувача або null, если не знайдений
+  } catch (error) {
+    console.error('Помилка при видаленні користувача:', error);
+    throw error; // Прокидуємо помилку далі
+  }
 };
 
 export { createUser, showUser, updateUser, deleteUser };
