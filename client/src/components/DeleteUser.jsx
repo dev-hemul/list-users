@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 
-const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost';
 
 // Оголошуємо userId та onUserDeleted як пропси в компоненті
 const DeleteUser = ({ userId, onUserDeleted }) => {

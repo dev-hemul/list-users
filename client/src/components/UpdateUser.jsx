@@ -17,7 +17,7 @@ const UpdateUser = ({ userId, onUserUpdated }) => {
   const handleSaveClick = async () => {
     console.log('Збереження користувача...'); // Перевіряємо чи функція викликається
     try {
-			const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+			const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost';
       const response = await axios.put(`${apiUrl}/updateUser/${userId}`, { name: newName });
       console.log('Відповідь серверу:', response); // Перевіряємо відповідь від сервера
       if (response.status === 200) {
