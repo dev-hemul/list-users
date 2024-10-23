@@ -6,6 +6,8 @@ const CreateUser = () => {
 		name: ''
 	});
 	
+	const [errorMessage, setErrorMessage] = useState(null);
+	
 	const handleChange = (e) => {
 		const {name, value} = e.target;
 		setFormData((prevData) => ({
@@ -22,12 +24,13 @@ const CreateUser = () => {
 		try {
 			const response = await axios.post(`${apiUrl}/createUser`, formData);
 			console.log('Form submitted successfully:', response.data);
-			if (response.status === 200) {
+			/*if (response.status === 200) {
 				alert(response.data.message);
-			}
-			
+			}*/
+			setErrorMessage(null);
 		} catch (error) {
 			console.error('Error submitting form:', error);
+			setErrorMessage('Форма може містити лише латиницю або кирилицю, мінімальна довжина 3 символи');
 		}
 	};
 	
@@ -56,6 +59,11 @@ const CreateUser = () => {
 				</button>
 			
 			</form>
+			{errorMessage && (
+                <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                    {errorMessage}
+                </div>
+            )}
 		</div>
 	);
 };

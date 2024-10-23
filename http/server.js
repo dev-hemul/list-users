@@ -12,7 +12,6 @@ import colors from 'colors';
 import cors from 'cors';
 import UsersRoute from './routes/users.js';
 
-
 const app = express();
 app.use(morgan('combined'));
 

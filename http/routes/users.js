@@ -3,8 +3,15 @@ import {Router} from 'express';
 import * as usersController from '../../controller/users.js';
 import path from 'path'; // Імпорт path для роботи зі шляхами
 import axios from 'axios';
+import Ajv from 'ajv';
+import { userSchema } from '../helpers/userSchemaValidation.js';
+import {fileURLToPath} from 'url';
 
 const router = Router();
+const ajv = new Ajv();
+const validate = ajv.compile(userSchema);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 router.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
@@ -12,6 +19,13 @@ router.get('/', (req, res) => {
 
 router.post('/createUser', async (req, res) => {
 	const {name} = req.body;
+	  // Валідуємо данні
+  const valid = validate(req.body);
+  if (!valid) {
+	  console.log(validate.errors);
+    return res.status(400).json({ errors: validate.errors });// Возвращаем ошибки валидации
+	  
+  }
 	const userIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress; // Отримання IP-адреси
   const userAgent = req.headers['user-agent']; // Це інформація про браузер користувача, який робить запит
   const referer=req.headers['referer'] || req.headers['referrer']; // Заголовок Referer (або Referrer) показує, з якого URL користувач перейшов на ваш сайт.
