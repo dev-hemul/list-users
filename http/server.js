@@ -42,7 +42,7 @@ app.use((err, req, res, next) => {
 	const {status = 404, message = 'Internal Server Error'} = err; // Беремо статус помилки
 	console.error(status);
 	console.error(message);
-	res.sendFile(path.join(__dirname, './http/public/404.html'));
+	res.sendFile(path.join(__dirname, './public/404.html'));
 });
 
 export default app;
