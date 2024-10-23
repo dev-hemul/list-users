@@ -5,7 +5,7 @@ const createUser = async (name, userIp, userAgent, referer, acceptLanguage) => {
     name: name,
     userIP: userIp,
     userAgent: userAgent,
-    referer: referer,
+    referrer: referer,
     acceptLanguage: acceptLanguage,
   });
   return result.id;
