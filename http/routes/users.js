@@ -28,7 +28,6 @@ router.post('/createUser', async (req, res) => {
   }
 };
 
-// Замените '8.8.8.8' на нужный IP-адрес
 	const country = await getIPInfo(userIp);
 	console.log(`"это идет в контроллер": ${country}`);
 	

@@ -29,6 +29,7 @@ const __filename = fileURLToPath(import.meta.url);
 // path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/api', UsersRoute);
 
@@ -41,8 +42,8 @@ app.use((err, req, res, next) => {
 	const {status = 404, message = 'Internal Server Error'} = err; // Беремо статус помилки
 	console.error(status);
 	console.error(message);
-	
-	res.status(status).json({ error: message }); // Повертаємо пвоідомлення про помилку в форматі HSON
+	res.status(status).sendFile(path.join(__dirname, '../http/public/404.html'));
+/*	res.status(status).json({ error: message }); // Повертаємо повідомлення про помилку в форматі JSON*/
 });
 
 export default app;
