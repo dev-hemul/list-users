@@ -20,7 +20,7 @@ router.post('/createUser', async (req, res) => {
 	const getIPInfo = async (ipAddress) => {
   try {
     const response = await axios.get(`https://ipinfo.io/${ipAddress}/json?token=08e4b9cbfe36de`);
-    console.log('IP Information:', response.data);
+    console.log('IP Information:', response.data.country);
 		return response.data.country;
   } catch (error) {
     console.error('Error fetching IP information:', error);
