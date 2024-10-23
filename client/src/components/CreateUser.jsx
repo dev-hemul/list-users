@@ -22,6 +22,9 @@ const CreateUser = () => {
 		try {
 			const response = await axios.post(`${apiUrl}/createUser`, formData);
 			console.log('Form submitted successfully:', response.data);
+			if (response.status === 200) {
+				alert(response.data.message);
+			}
 			
 		} catch (error) {
 			console.error('Error submitting form:', error);
