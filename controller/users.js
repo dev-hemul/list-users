@@ -8,6 +8,7 @@ const createUser = async (name, userIp, userAgent, referer, acceptLanguage) => {
     referrer: referer,
     acceptLanguage: acceptLanguage,
   });
+  console.log(result);
   return result.id;
 };
 
