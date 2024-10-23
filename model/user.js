@@ -6,10 +6,30 @@ const schema = new Schema({
 		default: '',
 		required: true
 	},
-	userIP: SchemaTypes.String,
-	userAgent: SchemaTypes.String,
-	referrer: SchemaTypes.String,
-	acceptLanguage: SchemaTypes.String,
+	
+	userIP: {
+		type: SchemaTypes.String,
+		default: '',
+		required: true
+	},
+	
+	userAgent: {
+		type: SchemaTypes.String,
+		default: '',
+		required: true
+	},
+	
+	referrer: {
+		type: SchemaTypes.String,
+		default: '',
+		required: true
+	},
+	
+	acceptLanguage: {
+		type: SchemaTypes.String,
+		default: '',
+		required: true
+	},
 }, {timestamps: true}); // Автоматом додасть поля createdAt, updatedAt (час створення і час оновлення запису)
 
 // TODO: 3 аргументом указываем ранее созданную коллекцию (если ранее была создана)

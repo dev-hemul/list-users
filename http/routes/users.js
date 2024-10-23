@@ -11,12 +11,12 @@ router.get('/', (req, res) => {
 
 router.post('/createUser', async (req, res) => {
 	const {name} = req.body;
-	console.log(name);
 	const userIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress; // Отримання IP-адреси
   const userAgent = req.headers['user-agent']; // Це інформація про браузер користувача, який робить запит
   const referer=req.headers['referer'] || req.headers['referrer']; // Заголовок Referer (або Referrer) показує, з якого URL користувач перейшов на ваш сайт.
   const acceptLanguage = req.headers['accept-language']; // Цей заголовок показує, яка мова краща для користувача (наприклад, en-US або ru-RU).
 	console.log({
+				name,
         userIp,
         userAgent,
         referer,
