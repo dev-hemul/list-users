@@ -43,7 +43,6 @@ app.use((err, req, res, next) => {
 	console.error(status);
 	console.error(message);
 	res.status(status).sendFile(path.join(__dirname, '../http/public/404.html'));
-/*	res.status(status).json({ error: message }); // Повертаємо повідомлення про помилку в форматі JSON*/
 });
 
 export default app;
