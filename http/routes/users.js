@@ -24,11 +24,13 @@ router.post('/createUser', async (req, res) => {
 		return response.data.country;
   } catch (error) {
     console.error('Error fetching IP information:', error);
+		return null;
   }
 };
 
 // Замените '8.8.8.8' на нужный IP-адрес
 	const country = await getIPInfo(userIp);
+	console.log(`"это идет в контроллер": ${country}`);
 	
 	console.log({
 				name,
