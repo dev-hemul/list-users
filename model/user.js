@@ -13,6 +13,11 @@ const schema = new Schema({
 		required: true
 	},
 	
+	country: {
+		type: SchemaTypes.String,
+		default: '',
+	},
+	
 	userAgent: {
 		type: SchemaTypes.String,
 		default: '',

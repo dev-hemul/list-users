@@ -2,6 +2,7 @@ import {Router} from 'express';
 // Імпорт контроллера
 import * as usersController from '../../controller/users.js';
 import path from 'path'; // Імпорт path для роботи зі шляхами
+import axios from 'axios';
 
 const router = Router();
 
@@ -15,15 +16,30 @@ router.post('/createUser', async (req, res) => {
   const userAgent = req.headers['user-agent']; // Це інформація про браузер користувача, який робить запит
   const referer=req.headers['referer'] || req.headers['referrer']; // Заголовок Referer (або Referrer) показує, з якого URL користувач перейшов на ваш сайт.
   const acceptLanguage = req.headers['accept-language']; // Цей заголовок показує, яка мова краща для користувача (наприклад, en-US або ru-RU).
+	
+	const getIPInfo = async (ipAddress) => {
+  try {
+    const response = await axios.get(`https://ipinfo.io/${ipAddress}/json?token=08e4b9cbfe36de`);
+    console.log('IP Information:', response.data);
+		return response.data.country;
+  } catch (error) {
+    console.error('Error fetching IP information:', error);
+  }
+};
+
+// Замените '8.8.8.8' на нужный IP-адрес
+	const country = await getIPInfo(userIp);
+	
 	console.log({
 				name,
         userIp,
+				country,
         userAgent,
         referer,
         acceptLanguage
     });
 	
-	await usersController.createUser(name, userIp, userAgent, referer, acceptLanguage);
+	await usersController.createUser(name, userIp, country, userAgent, referer, acceptLanguage);
 	res.status(200).json({message: 'User created successfully', name});
 });
 

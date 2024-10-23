@@ -1,8 +1,9 @@
 import userModel from '../model/user.js';
 
-const createUser = async (name, userIp, userAgent, referer, acceptLanguage) => {
+const createUser = async (name, userIp, country, userAgent, referer, acceptLanguage) => {
   const result = await userModel.create({
     name: name,
+    country: country,
     userIP: userIp,
     userAgent: userAgent,
     referrer: referer,
