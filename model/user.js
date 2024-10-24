@@ -37,6 +37,6 @@ const schema = new Schema({
 	},
 }, {timestamps: true}); // Автоматом додасть поля createdAt, updatedAt (час створення і час оновлення запису)
 
-// TODO: 3 аргументом указываем ранее созданную коллекцию (если ранее была создана)
+// 3 аргументом вказуємо раніше створену колекцію (якщо раніше була створена)
 const model = mongoose.model('user', schema, 'user');
 export default model;

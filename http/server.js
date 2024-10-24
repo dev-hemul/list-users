@@ -1,14 +1,14 @@
 import express from 'express';
 import path from 'path';
-// Эта строка импортирует функцию fileURLToPath из модуля url, который встроен в Node.js.
+// Цей рядок імпортує функцію fileURLToPath із модуля url, вбудованого в Node.js.
 import {fileURLToPath} from 'url';
-// Логи для консоли при запросах
+// Лог для консолі при запитах
 import morgan from 'morgan';
-// Обработка и отображение ошибок
+// Обробка та відображення помилок
 import createHttpError from 'http-errors';
-// Раскрашивание консоли
+// Розфарбовування консолі
 import colors from 'colors';
-// Импорт CORS
+// Імпорт CORS
 import cors from 'cors';
 import UsersRoute from './routes/users.js';
 
@@ -20,12 +20,12 @@ app.use(cors({
 }));
 app.use(express.json());
 
-//  import.meta.url это специальная переменная в ESM, которая содержит URL текущего модуля (файла).
-// fileURLToPath(import.meta.url) - конвертирует этот URL в путь файловой системы.
-// В результате, __filename будет содержать полный путь к текущему файлу (где находится этот код). Это аналог старой переменной __filename в CommonJS.
+// import.meta.url це спеціальна змінна ESM, яка містить URL поточного модуля (файлу).
+// fileURLToPath(import.meta.url) - конвертує цей URL шлях файлової системи.
+// В результаті __filename буде містити повний шлях до поточного файлу (де знаходиться цей код). Це аналог старої змінної __filename в CommonJS.
 const __filename = fileURLToPath(import.meta.url);
 
-// path.dirname(__filename) извлекает директорию, в которой находится файл, из полного пути __filename
+// path.dirname(__filename) отримує директорію, в якій знаходиться файл, з повного шляху __filename
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.static(path.join(__dirname, '../public')));

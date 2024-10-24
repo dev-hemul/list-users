@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 
 const connectDB = async () => {
-	// TODO: Нужно явно указывать имя базы данных в ссылке на подключение, иначе будет бд "test" по умолчанию
+	// Потрібно явно вказувати ім'я бази даних у посиланні на підключення, інакше буде бд "test" за замовчуванням
 	const dbName = 'mongodb+srv://yevhen:88888888@cluster1.xm5y8.mongodb.net/user?retryWrites=true&w=majority&appName=Cluster1';
 	try {
 		await mongoose.connect(dbName);

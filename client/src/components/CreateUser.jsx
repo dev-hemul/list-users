@@ -17,7 +17,7 @@ const CreateUser = () => {
 	};
 	
 	const handleSubmit = async (e) => {
-		e.preventDefault(); // Предотвращаем перезагрузку страницы
+		e.preventDefault(); // Запобігаємо перезавантаженню сторінки
 		
 		const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000';
 		

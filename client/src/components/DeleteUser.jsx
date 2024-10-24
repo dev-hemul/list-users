@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 
-
-
 // Оголошуємо userId та onUserDeleted як пропси в компоненті
 const DeleteUser = ({ userId, onUserDeleted }) => {
   console.log('ID користувача для видалення:', userId); // Логуємо ID користувача

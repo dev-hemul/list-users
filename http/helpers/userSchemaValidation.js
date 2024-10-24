@@ -4,7 +4,7 @@ export const userSchema = {
     name: {
       type: "string",
       minLength: 3,
-      pattern: "^[a-zA-Zа-яА-ЯёЁ]+$" // Допустимы только буквы (русские и латинские)
+      pattern: "^[a-zA-Zа-яА-ЯёЁ]+$" // Допустимі лише літери (російські та латинські)
     }
   },
   required: ["name"]

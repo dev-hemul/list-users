@@ -6,7 +6,6 @@ import axios from 'axios';
 import Ajv from 'ajv';
 import { userSchema } from '../helpers/userSchemaValidation.js';
 import {fileURLToPath} from 'url';
-
 const router = Router();
 const ajv = new Ajv();
 const validate = ajv.compile(userSchema);
@@ -23,8 +22,7 @@ router.post('/createUser', async (req, res) => {
   const valid = validate(req.body);
   if (!valid) {
 	  console.log(validate.errors);
-    return res.status(400).json({ errors: validate.errors });// Возвращаем ошибки валидации
-	  
+    return res.status(400).json({ errors: validate.errors }); // Повертаємо помилки валідації
   }
 	const userIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress; // Отримання IP-адреси
   const userAgent = req.headers['user-agent']; // Це інформація про браузер користувача, який робить запит
@@ -43,7 +41,7 @@ router.post('/createUser', async (req, res) => {
 };
 
 	const country = await getIPInfo(userIp);
-	console.log(`"это идет в контроллер": ${country}`);
+	console.log(`"Це іде в контроллер": ${country}`);
 	
 	console.log({
 				name,
@@ -55,7 +53,7 @@ router.post('/createUser', async (req, res) => {
     });
 	
 	await usersController.createUser(name, userIp, country, userAgent, referer, acceptLanguage);
-	res.status(200).json({message: 'User created successfully', name});
+	res.status(200).json({message: 'Користувач успішно створений!', name});
 });
 
 router.get('/users', async (req, res) => {
@@ -72,7 +70,7 @@ router.get('/users', async (req, res) => {
 // Видалення користувача по ID
 router.delete('/deleteUser/:id', async (req, res) => {
 	const userId = req.params.id;
-	console.log(`Отриманий на видалення користувача з ID: ${userId}`); // Логіруємо ID
+	console.log(`Отриманий на видалення користувач з ID: ${userId}`); // Логіруємо ID
 	try {
 		const deletedUser = await usersController.deleteUser(userId);
 		console.log('Видалений користувач:', deletedUser); // Логіруємо видаленого користувача
@@ -99,7 +97,7 @@ router.put('/updateUser/:id', async (req, res) => {
 		const updatedUser = await usersController.updateUser(userId, name);
 		
 		if (!updatedUser) {
-			return res.status(404).json({message: 'Користувача не знайдено'});
+			return res.status(404).json({message: 'Користувач не знайдений'});
 		}
 		
 		res.status(200).json({
