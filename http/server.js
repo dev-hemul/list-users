@@ -18,7 +18,8 @@ const app = express();
 app.use(morgan('combined'));
 
 app.use(cors({
-  origin: '*'
+    origin: 'https://evgeniiviter.site',  // Укажите ваш домен
+    credentials: true // Позволяет отправку куки
 }));
 app.use(cookieParser('test'));
 
