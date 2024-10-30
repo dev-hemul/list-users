@@ -10,6 +10,8 @@ import createHttpError from 'http-errors';
 import colors from 'colors';
 // Імпорт CORS
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
+
 import UsersRoute from './routes/users.js';
 
 const app = express();
@@ -18,6 +20,8 @@ app.use(morgan('combined'));
 app.use(cors({
   origin: '*'
 }));
+app.use(cookieParser('test'));
+
 app.use(express.json());
 
 // import.meta.url це спеціальна змінна ESM, яка містить URL поточного модуля (файлу).

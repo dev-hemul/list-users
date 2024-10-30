@@ -13,6 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 router.get('/', (req, res) => {
+	res.cookie('username', 12345);
 	res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
 });
 
