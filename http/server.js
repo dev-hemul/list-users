@@ -34,6 +34,10 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.get('/', (req, res) => {
+	res.cookie('username', 12345);
+	res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
+});
 app.use('/api', UsersRoute);
 
 app.use((req, res, next) => {

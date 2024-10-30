@@ -12,11 +12,6 @@ const validate = ajv.compile(userSchema);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-router.get('/', (req, res) => {
-	res.cookie('username', 12345);
-	res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
-});
-
 router.post('/createUser', async (req, res) => {
 	const {name} = req.body;
 	  // Валідуємо данні
