@@ -4,7 +4,17 @@ import CreateUser from './components/CreateUser.jsx';
 import ShowUsers from './components/ShowUsers.jsx';
 import axios from 'axios';
 
-axios.get('https://evgeniiviter.site/api/cookie', {
+axios.get('https://evgeniiviter.site/api/set-cookie', {
+    withCredentials: true // Включите куки для кросс-доменных запросов
+})
+.then(response => {
+    console.log(response.data); // Отобразите значение куки
+})
+.catch(error => {
+    console.error('Error getting cookie:', error);
+});
+
+axios.get('https://evgeniiviter.site/api/get-cookie', {
     withCredentials: true // Включите куки для кросс-доменных запросов
 })
 .then(response => {
