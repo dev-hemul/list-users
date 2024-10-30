@@ -4,7 +4,7 @@ import CreateUser from './components/CreateUser.jsx';
 import ShowUsers from './components/ShowUsers.jsx';
 import axios from 'axios';
 
-axios.get('https://evgeniiviter.site/', {
+axios.get('https://evgeniiviter.site/api/cookie', {
     withCredentials: true // Включите куки для кросс-доменных запросов
 })
 .then(response => {

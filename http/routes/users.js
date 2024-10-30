@@ -106,4 +106,12 @@ router.put('/updateUser/:id', async (req, res) => {
 	}
 });
 
+router.get('/cookie', (req, res) => {
+		res.cookie('username', 123456, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax'
+});
+});
+
 export default router;
