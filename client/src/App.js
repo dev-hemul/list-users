@@ -2,6 +2,18 @@ import './App.css';
 import Layout from './components/layout/layout';
 import CreateUser from './components/CreateUser.jsx';
 import ShowUsers from './components/ShowUsers.jsx';
+import axios from 'axios';
+
+axios.get('https://evgeniiviter.site/', {
+    withCredentials: true // Включите куки для кросс-доменных запросов
+})
+.then(response => {
+    console.log(response.data); // Отобразите значение куки
+})
+.catch(error => {
+    console.error('Error getting cookie:', error);
+});
+
 
 function App() {
 	return (
