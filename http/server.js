@@ -35,7 +35,11 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', (req, res) => {
-	res.cookie('username', 12345);
+	res.cookie('username', 123456, {
+    httpOnly: true,
+    secure: true, // Установите secure в true, если у вас HTTPS
+    sameSite: 'lax'
+});
 	res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
 });
 app.use('/api', UsersRoute);
