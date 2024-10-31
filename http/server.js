@@ -53,8 +53,8 @@ app.get('/get-cookie', (req, res) => {
 });
 
 app.post('/send-cookies', (req, res) => {
-  console.log('Отриманий cookie:', req.cookies); // Логируем полученные куки
-  res.json({ message: 'Отримані cookie', cookies: req.cookies }); // Возвращаем куки в формате JSON
+  console.log('Отриманий cookie:', req.cookies); //
+  res.send(req.cookies);
 });
 
 
