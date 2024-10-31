@@ -106,19 +106,4 @@ router.put('/updateUser/:id', async (req, res) => {
 	}
 });
 
-router.get('/set-cookie', (req, res) => {
-    res.cookie('username', '123456', {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'lax'
-    });
-    res.send('Cookie set');
-});
-
-// Обработка запроса с кукой
-router.get('/get-cookie', (req, res) => {
-    const username = req.cookies.username; // Чтение куки
-    res.send(`Username from cookie: ${username}`);
-});
-
 export default router;
