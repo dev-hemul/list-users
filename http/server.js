@@ -53,8 +53,8 @@ app.get('/get-cookie', (req, res) => {
 });
 
 app.post('/send-cookies', (req, res) => {
-  res.send(11111);
-  /*console.log('Отриманий cookie:', req.cookies);*/
+  console.log('Отриманий cookie:', req.cookies); // Логируем cookies на сервере
+  res.send('Cookies logged to console1111111'); // Отправляем ответ клиенту
 });
 
 
