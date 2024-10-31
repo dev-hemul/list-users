@@ -18,7 +18,7 @@ function App() {
 					{}, // тело запиту може бути пустим, якщо відправляються тільки файли cookie
 					{withCredentials: true}
 				);
-				console.log('Відправлено серверу:', JSON.stringify(response.data))
+				console.log('Кукі відправлені серверу')
 			} catch (err) {
 				console.log(err);
 			}
