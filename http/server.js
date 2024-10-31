@@ -19,7 +19,7 @@ const app = express();
 app.use(morgan('combined'));
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://evgeniiviter.site/',
     credentials: true
 }));
 
@@ -44,19 +44,20 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-    const cookieValue = cookie.serialize("name", "bar", {
+    /*const cookieValue = cookie.serialize("name", "bar", {
         httpOnly: true,
         maxAge: 60 * 60 * 24 * 7, // 1 week
-        sameSite: 'none',  // Если вы используете разные источники (например, http и https)
-        secure: false      // Убедитесь, что используется false, если вы работаете по http
+        sameSite: 'none',
+        secure: false
     });
 
     console.log("Setting cookie:", cookieValue);
     res.setHeader("Set-Cookie", cookieValue);
     res.setHeader("Access-Control-Allow-Credentials", "true");
-
-    // Логируем заголовки ответа
-    console.log("Response Headers:", res.getHeaders());
+		
+    console.log("Response Headers:", res.getHeaders());*/
+		res.cookie('test', 'abcde');
+		console.log(cookie);
 
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
