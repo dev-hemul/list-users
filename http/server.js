@@ -11,20 +11,18 @@ import colors from 'colors';
 // Імпорт CORS
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import cookie from 'cookie';
-
+import {v4 as uuidv4} from 'uuid';
 import UsersRoute from './routes/users.js';
 
 const app = express();
 app.use(morgan('combined'));
 
-app.use(cors({
-    origin: 'https://evgeniiviter.site/',
-    credentials: true
-}));
-
-
 app.use(cookieParser());
+
+app.use(cors({
+	origin: ['http://localhost:3000', 'https://evgeniiviter.site/'],
+	credentials: true
+}));
 
 app.use(express.json());
 
@@ -39,31 +37,25 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use((req, res, next) => {
-    console.log(`Request to ${req.path}`);
-    next();
+	console.log(`Request to ${req.path}`);
+	next();
 });
 
-app.get('/', (req, res) => {
-    /*const cookieValue = cookie.serialize("name", "bar", {
-        httpOnly: true,
-        maxAge: 60 * 60 * 24 * 7, // 1 week
-        sameSite: 'none',
-        secure: false
-    });
+/*app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html')); // Возврат HTML-файла
+});*/
 
-    console.log("Setting cookie:", cookieValue);
-    res.setHeader("Set-Cookie", cookieValue);
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-		
-    console.log("Response Headers:", res.getHeaders());*/
-		res.cookie('test', 'abcde');
-		console.log(cookie);
-
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+app.get('/get-cookie', (req, res) => {
+    const uniqueId = uuidv4();
+    res.cookie('ID', uniqueId); // Встановлення cookie
+    console.log(`Згенерований cookie: ${uniqueId}`); // Виводимо cookie в консоль серверу
+    res.send({ ID: uniqueId });
 });
 
-
-
+app.post('/send-cookies', (req, res) => {
+  console.log('Отриманий cookie:', req.cookies); //
+  res.send('Cookies logged to console');
+});
 
 
 app.use('/api', UsersRoute);
