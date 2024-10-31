@@ -54,7 +54,7 @@ app.get('/get-cookie', (req, res) => {
 
 app.post('/send-cookies', (req, res) => {
   console.log('Отриманий cookie:', req.cookies); //
-  res.send(req.cookies);
+  res.send(11111);
 });
 
 
