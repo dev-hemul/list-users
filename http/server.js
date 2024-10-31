@@ -54,7 +54,7 @@ app.get('/get-cookie', (req, res) => {
 
 app.post('/send-cookies', (req, res) => {
   console.log('Отриманий cookie:', req.cookies); // Логируем cookies на сервере
-  res.send('Cookies logged to console1111111'); // Отправляем ответ клиенту
+  res.send(`Кукі сервером отримані: ${JSON.stringify(req.cookies)}`); // Отправляем ответ клиенту
 });
 
 
