@@ -41,10 +41,6 @@ app.use((req, res, next) => {
 	next();
 });
 
-/*app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html')); // Возврат HTML-файла
-});*/
-
 app.get('/get-cookie', (req, res) => {
     const uniqueId = uuidv4();
     res.cookie('ID', uniqueId); // Встановлення cookie

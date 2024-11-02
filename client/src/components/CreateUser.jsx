@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const CreateUser = () => {
 	const [formData, setFormData] = useState({
-		name: ''
+		 name: localStorage.getItem("name") || ""
 	});
 	
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -15,6 +15,7 @@ const CreateUser = () => {
 			...prevData,
 			[name]: value
 		}));
+		localStorage.setItem("name", value);
 	};
 	
 	const handleSubmit = async (e) => {
