@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const CreateUser = () => {
 	const [formData, setFormData] = useState({
-		 name: localStorage.getItem("name") || ""
+		name: localStorage.getItem("name") || ""
 	});
 	
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -15,7 +15,13 @@ const CreateUser = () => {
 			...prevData,
 			[name]: value
 		}));
-		localStorage.setItem("name", value);
+		try {
+			localStorage.setItem("name", value);
+			console.log(localStorage)
+		} catch (error) {
+			console.error("Ошибка записи в localStorage:", error);
+		}
+		
 	};
 	
 	const handleSubmit = async (e) => {
@@ -27,7 +33,7 @@ const CreateUser = () => {
 			const response = await axios.post(`${apiUrl}/createUser`, formData);
 			console.log('Form submitted successfully:', response.data);
 			if (response.status === 200) {
-			setSuccessMessage('Дані успішно відправлені');
+				setSuccessMessage('Дані успішно відправлені');
 			}
 			setErrorMessage(null);
 		} catch (error) {
@@ -42,7 +48,7 @@ const CreateUser = () => {
 				setSuccessMessage(null);
 				setErrorMessage(null);
 			}, 3000);
-
+			
 			return () => clearTimeout(timer); // Очищаємо таймер при розмонтуванні або оновленні
 		}
 	}, [successMessage, errorMessage]);
@@ -73,14 +79,16 @@ const CreateUser = () => {
 			
 			</form>
 			{errorMessage && (
-				<div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+				<div
+					className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
 					{errorMessage}
 				</div>
 			)}
-
+			
 			{/* Відображення про успішну відправку */}
 			{successMessage && (
-				<div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+				<div
+					className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
 					{successMessage}
 				</div>
 			)}
