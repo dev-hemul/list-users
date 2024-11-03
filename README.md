@@ -17,4 +17,6 @@
 - Morgan
 - Nodemoon
 - Api "ipinfo.io"
+- uuid
+- cookie-parser
 
