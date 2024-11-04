@@ -8,7 +8,7 @@ const connectDB = async () => {
 		await mongoose.connect(dbName);
 		console.log(`Connected to DB: ${dbName}`.bgGreen.black);
 	} catch (err) {
-		console.log(`'not connected', err`.bgYellow.red.bold);
+		console.log(`'not connected', ${err}`.bgYellow.red.bold);
 	}
 }
 

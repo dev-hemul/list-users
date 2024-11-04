@@ -13,6 +13,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import {v4 as uuidv4} from 'uuid';
 import UsersRoute from './routes/users.js';
+import AuthRouter from './routes/authRouter.js';
 
 const app = express();
 app.use(morgan('combined'));
@@ -25,6 +26,8 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use('/api', UsersRoute);
+app.use('/api/auth', AuthRouter);
 
 // import.meta.url це спеціальна змінна ESM, яка містить URL поточного модуля (файлу).
 // fileURLToPath(import.meta.url) - конвертує цей URL шлях файлової системи.
@@ -53,8 +56,6 @@ app.post('/send-cookies', (req, res) => {
   res.send(`Кукі сервером отримані: ${JSON.stringify(req.cookies)}`); // Отправляем ответ клиенту
 });
 
-
-app.use('/api', UsersRoute);
 
 app.use((req, res, next) => {
 	next(createHttpError(404));

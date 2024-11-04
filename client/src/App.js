@@ -2,8 +2,12 @@ import './App.css';
 import Layout from './components/layout/layout';
 import CreateUser from './components/CreateUser.jsx';
 import ShowUsers from './components/ShowUsers.jsx';
+import LoginPage from './components/auth/login/index';
 import axios from 'axios';
 import {useEffect} from 'react';
+import {Route, Routes} from "react-router-dom";
+import PrivateRoute from './components/utils/router/privateRoute.jsx';
+import Home from './components/home/index';
 
 function App() {
 	useEffect(() => {
@@ -30,12 +34,19 @@ function App() {
 	
 	return (
 		<Layout>
-			<h1 className="text-center mb-5 text-3xl">Список покупців:</h1>
-			<div
-				className="flex justify-center sm:flex-col flex-wrap gap-3 md:flex-row">
+			{/*<h1 className="text-center mb-5 text-3xl">Список покупців:</h1>*/}
+			<Routes>
+				<Route path="/" element={<LoginPage/>}/>
+				<Route element={<PrivateRoute/>}>
+					<Route path="/home" element={<Home/>}/>
+				</Route>
+				
+			</Routes>
+			
+			{/*<div className="flex justify-center sm:flex-col flex-wrap gap-3 md:flex-row">
 				<div className="mb-10"><CreateUser/></div>
 				<ShowUsers/>
-			</div>
+			</div>*/}
 		</Layout>
 	);
 }
