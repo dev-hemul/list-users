@@ -9,6 +9,7 @@ const LoginPage = () => {
 	const navigate = useNavigate();
 
 const handleLogin = async (e) => {
+	console.log('Данные для авторизации:', { username, password });
 	e.preventDefault();
 	try {
 		const apiUrl = process.env.REACT_APP_API_AUTH || 'http://localhost:4000/api/auth';
