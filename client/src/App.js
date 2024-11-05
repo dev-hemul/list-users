@@ -1,13 +1,12 @@
 import './App.css';
 import Layout from './components/layout/layout';
-import CreateUser from './components/CreateUser.jsx';
-import ShowUsers from './components/ShowUsers.jsx';
 import LoginPage from './components/auth/login/index';
 import axios from 'axios';
 import {useEffect} from 'react';
 import {Route, Routes} from "react-router-dom";
 import PrivateRoute from './components/utils/router/privateRoute.jsx';
-import Home from './components/home/index';
+import Home from './components/home/index.js';
+import AdminPanel from './components/adminPanel/index.js';
 
 function App() {
 	useEffect(() => {
@@ -19,7 +18,7 @@ function App() {
 				
 				await axios.post(
 					`${apiCookie}/send-cookies`,
-					{}, // тело запиту може бути пустим, якщо відправляються тільки файли cookie
+					{},
 					{withCredentials: true}
 				);
 				console.log('Кукі відправлені серверу')
@@ -31,22 +30,16 @@ function App() {
 		fetchCookie();
 	}, []);
 	
-	
 	return (
 		<Layout>
-			{/*<h1 className="text-center mb-5 text-3xl">Список покупців:</h1>*/}
 			<Routes>
 				<Route path="/" element={<LoginPage/>}/>
+				<Route path="/home" element={<Home/>}/>
 				<Route element={<PrivateRoute/>}>
-					<Route path="/home" element={<Home/>}/>
+					<Route path="/admin" element={<AdminPanel/>}/>
 				</Route>
-				
 			</Routes>
-			
-			{/*<div className="flex justify-center sm:flex-col flex-wrap gap-3 md:flex-row">
-				<div className="mb-10"><CreateUser/></div>
-				<ShowUsers/>
-			</div>*/}
+		
 		</Layout>
 	);
 }

@@ -1,16 +1,24 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const PrivateRoute = () => {
 	const token = localStorage.getItem('token');
-	const role = localStorage.getItem('role');
 
 	if (!token) {
-		return <Navigate to="/login" />;
+		return <Navigate to="/" />;
 	}
 
-	return (
-		<Outlet />
-	);
+	let role;
+	try {
+		const decodedToken = jwtDecode(token);
+		role = decodedToken.roles[0]; // Извлекаем первую роль
+	} catch (error) {
+		console.error("Ошибка при декодировании токена:", error);
+		return <Navigate to="/" />;
+	}
+
+	// Сохраняем роль в контексте или локальном состоянии (если нужно)
+	return <Outlet context={role} />;
 };
 
 export default PrivateRoute;
