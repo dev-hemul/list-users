@@ -13,6 +13,10 @@ const handleLogin = async (e) => {
 	e.preventDefault();
 	try {
 		const apiUrl = process.env.REACT_APP_API_AUTH || 'http://localhost:4000/api/auth';
+		
+		 // Логирование отправляемых данных
+        console.log("Отправляемые данные:", { username, password });
+		
 		const response = await axios.post(`${apiUrl}/login`, {
 			username,
 			password,
